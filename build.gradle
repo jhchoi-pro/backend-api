@@ -1,0 +1,70 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.fullstack'
+version = '0.0.1-SNAPSHOT'
+description = 'Full Stack Study Backend API'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    // 1. 웹 개발 기능 (Controller, API 사용을 위해 필수)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 2. DB 연동 및 JPA (Java Persistence API) 기능 : ORM 표준 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 3. 인증, 권한 관리, 데이터 보호 등 Spring Security를 사용하기 위한 필수 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // 4. JWT를 다루기 위한 핵심적인 API를 제공하는 라이브러리
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+
+    // 5. Swagger/OpenAPI 3.0 설정
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+
+    // 6. 유효성 검사 기능을 쉽게 사용할 수 있도록 돕는 Starter
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Lombok (편의 기능)
+	compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // MySQL Driver (DB 접속을 위해 필수)
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // JWT 생성 및 검증, 섬여 알고리즘 처리, 페이로드 클레임 파싱 등 JWT를 다루는 실제 기능 제공 라이브러리
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // Spring Security Test (MockMvc에서 인증 시뮬레이션용)
+    testImplementation 'org.springframework.security:spring-security-test'
+    // H2 Database (테스트 환경에서 인메모리 DB 사용)
+    testImplementation 'com.h2database:h2'
+    // AssertJ (테스트 검증 라이브러리)
+    testImplementation 'org.assertj:assertj-core'
+
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
