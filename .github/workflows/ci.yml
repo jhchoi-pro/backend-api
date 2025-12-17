@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest # 리눅스 환경에서 실행
 
     steps:
-      - uses: actions/checkout@v3 # 코드 가져오기
+      - uses: actions/checkout@v4 # 코드 가져오기
 
       - name: Set up JDK 17 # 본인의 Java 버전과 맞추세요
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -29,7 +29,7 @@ jobs:
       # 테스트 결과 리포트를 업로드 (선택 사항)
       - name: Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: build/test-results/test/
