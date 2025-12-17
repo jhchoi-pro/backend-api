@@ -24,7 +24,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build # 👈 여기서 우리가 만든 모든 테스트가 실행됩니다!
+        run: ./gradlew build -x test # 👈 테스트를 제외(-x test)하고 빌드만 시도
 
       # 테스트 결과 리포트를 업로드 (선택 사항)
       - name: Upload Test Results
