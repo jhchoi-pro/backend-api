@@ -3,9 +3,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main", "develop" ] # 메인이나 데브 브랜치에 푸시될 때 실행
+    branches: [ "master", "develop" ] # 메인이나 데브 브랜치에 푸시될 때 실행
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
